@@ -11,7 +11,7 @@ const App = () => {
     
     // IMPORTANT: Replace this with a working, universal link from a service like Bitly or Firebase Dynamic Links.
     // The previous dynamic URL failed because there is no server to handle the redirection in this environment.
-    const universalUrl = 'https://your-universal-link-here.com';
+    const universalUrl = 'https://qr-g-latest-pft9.vercel.app/';
 
     // A helper function to generate the QR code image URL
     const getQRCodeImageUrl = (url, size = 256) => {
