@@ -75,8 +75,4 @@ const App = () => {
     );
 };
 
-// Standard setup for a single-file React app.
-const container = document.getElementById('root');
-if (container) {
-  ReactDOM.render(<App />, container);
-}
+export default App
