@@ -9,8 +9,23 @@ const App = () => {
     // Updated universal URL to point to serverless redirection
     const universalUrl = 'https://qr-g-latest-pft9.vercel.app/api/redirect';
 
-    const getQRCodeImageUrl = (url, size = 256) => {
-        return `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(url)}&size=${size}x${size}`;
+    // Function to generate QR code URL
+    const getQRCodeImageUrl = (url, size = 256, format = 'png') => {
+        return `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(url)}&size=${size}x${size}&format=${format}`;
+    };
+
+    // Handle QR code generation
+    const handleGenerate = () => {
+        setShowQRCode(true);
+    };
+
+    // Download the QR Code in the selected format
+    const handleDownload = (format) => {
+        const qrCodeUrl = getQRCodeImageUrl(universalUrl, 256, format);
+        const link = document.createElement('a');
+        link.href = qrCodeUrl;
+        link.download = `QRCode.${format}`;  // Set the file name based on the format
+        link.click();
     };
 
     useEffect(() => {
@@ -22,17 +37,10 @@ const App = () => {
         }
     }, [appStoreUrl, playStoreUrl]);
 
-    const handleGenerate = () => {
-        setShowQRCode(true);
-    };
-
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 font-sans text-center">
             <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-lg w-full space-y-6">
                 <h1 className="text-3xl font-bold text-gray-800" >Germany App QR Generator</h1>
-                {/* <p className="text-gray-600">
-                    Click the button below to generate a single QR code that automatically redirects to the correct app store.
-                </p> */}
                 
                 <button 
                     onClick={handleGenerate} 
@@ -52,6 +60,22 @@ const App = () => {
                         </div>
                         <p className="text-sm text-gray-500 break-words">Scan this single code for both iOS and Android devices!</p>
                         <p className="text-xs text-gray-400 break-words">QR Link: {universalUrl}</p>
+
+                        {/* Download buttons for JPG and PNG formats */}
+                        <div className="flex justify-center gap-4 mt-4">
+                            <button 
+                                onClick={() => handleDownload('png')}
+                                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full transition-colors duration-300"
+                            >
+                                Download as PNG
+                            </button>
+                            <button 
+                                onClick={() => handleDownload('jpg')}
+                                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full transition-colors duration-300"
+                            >
+                                Download as JPG
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>
