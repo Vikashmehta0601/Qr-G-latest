@@ -65,13 +65,13 @@ const App = () => {
                         <div className="flex justify-center gap-4 mt-4">
                             <button 
                                 onClick={() => handleDownload('png')}
-                                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full transition-colors duration-300"
+                                className="bg-green-500 hover:bg-green-600 text-black font-semibold py-2 px-4 rounded-full transition-colors duration-300"
                             >
                                 Download as PNG
                             </button>
                             <button 
                                 onClick={() => handleDownload('jpg')}
-                                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full transition-colors duration-300"
+                                className="bg-red-500 hover:bg-red-600 text-black font-semibold py-2 px-4 rounded-full transition-colors duration-300"
                             >
                                 Download as JPG
                             </button>
