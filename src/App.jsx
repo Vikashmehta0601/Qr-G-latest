@@ -1,40 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 
 const App = () => {
-    // Hardcoded app store links
     const appStoreUrl = 'https://apps.apple.com/in/app/amazon-india-shop-pay-minitv/id1478350915';
     const playStoreUrl = 'https://play.google.com/store/apps/details?id=in.amazon.mShop.android.shopping';
     
-    // State to manage UI visibility
     const [showQRCode, setShowQRCode] = useState(false);
-    
-    // IMPORTANT: Replace this with a working, universal link from a service like Bitly or Firebase Dynamic Links.
-    // The previous dynamic URL failed because there is no server to handle the redirection in this environment.
-    const universalUrl = 'https://qr-g-latest-pft9.vercel.app/';
 
-    // A helper function to generate the QR code image URL
+    // Updated universal URL to point to serverless redirection
+    const universalUrl = 'https://qr-g-latest-pft9.vercel.app/api/redirect';
+
     const getQRCodeImageUrl = (url, size = 256) => {
         return `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(url)}&size=${size}x${size}`;
     };
 
-    // Effect to handle redirection on page load
     useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        // This logic is now redundant because the QR code points to a different URL,
-        // but it is kept to show how a proper universal link setup would work.
-        if (urlParams.has('redirect')) {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            // Check for iOS
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = appStoreUrl;
-            // Check for Android
-            } else if (/android/i.test(userAgent)) {
-                window.location.href = playStoreUrl;
-            } else {
-                // For desktop, just clear the parameter to avoid re-redirecting
-                window.location.href = `${window.location.origin}${window.location.pathname}`;
-            }
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            window.location.href = appStoreUrl;
+        } else if (/android/i.test(userAgent)) {
+            window.location.href = playStoreUrl;
         }
     }, [appStoreUrl, playStoreUrl]);
 
@@ -75,4 +59,4 @@ const App = () => {
     );
 };
 
-export default App
+export default App;
