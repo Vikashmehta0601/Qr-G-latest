@@ -29,16 +29,16 @@ const App = () => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 font-sans text-center">
             <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-lg w-full space-y-6">
-                <h1 className="text-3xl font-bold text-gray-800">Universal App QR Generator</h1>
-                <p className="text-gray-600">
+                <h1 className="text-3xl font-bold text-gray-800">Germany App QR Generator</h1>
+                {/* <p className="text-gray-600">
                     Click the button below to generate a single QR code that automatically redirects to the correct app store.
-                </p>
+                </p> */}
                 
                 <button 
                     onClick={handleGenerate} 
                     className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 transform hover:scale-105 shadow-lg"
                 >
-                    Generate Universal QR Code
+                    Generate Germany QR Code
                 </button>
                 
                 {showQRCode && (
